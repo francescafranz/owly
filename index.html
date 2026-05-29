@@ -1,13 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" /> <!--da cambiare!!!!-->
+    <link rel="stylesheet" href="/src/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>owly</title>
+    <title>Owly</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main class="app">
+      <section class="hero">
+        <h1>Owly</h1>
+        <p>Cerca i libri per categoria</p>
+
+        <form id="search-form" class="search-box">
+          <input
+            id="subject-input"
+            type="text"
+            placeholder="Es. thriller"
+          />
+          <button type="submit">Cerca</button>
+        </form>
+      </section>
+
+      <section id="results"></section>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
