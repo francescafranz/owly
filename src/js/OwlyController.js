@@ -1,0 +1,1 @@
+// salvare titolo, autori, cover_id e key in appState.selectedBook quando utente clicca su una determinata card

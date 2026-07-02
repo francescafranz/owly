@@ -1,0 +1,1 @@
+// book description: gestire i tre casi oggetto(description.value), stringa (description) e assenza (messaggio alternativo) in utils.js
