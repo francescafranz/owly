@@ -3,12 +3,10 @@
 
 export function formatAuthors(authors) { 
   
-  if (!authors) {
-    return 'Error in searching for the authors'
-  } else if (authors.length === 0) {
+  if (!authors || authors.length === 0) {
     return 'No authors found';
   } else {
-    const authorsNames = authors.map(author => author.name).join(',');
+    const authorsNames = authors.map(author => author.name).join(', ');
     return authorsNames;
   }
 
