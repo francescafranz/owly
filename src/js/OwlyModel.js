@@ -1,7 +1,8 @@
 import axios from 'axios';
-
+//books per page
 const limit = 10;
 
+//API for searching books by category
 async function searchByCategory (category, offset) {
   const urlOpenLibraryCategory = `https://openlibrary.org/subjects/${category}.json?limit=${limit}&offset=${offset}`;
   let bookList;
@@ -17,6 +18,7 @@ async function searchByCategory (category, offset) {
   };
 }
 
+//API for book details
 async function bookDetails (key) {
   const urlOpenLibraryBookKey = `https://openlibrary.org/${key}.json`;
   let bookDetailsResponse;
