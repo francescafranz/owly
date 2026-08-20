@@ -105,5 +105,5 @@ In altri file
 import { appState } from './AppState';
 
 appState.books = [{ title: 'Book 1' }, { title: 'Book 2' }];
-``à
+```
 */
