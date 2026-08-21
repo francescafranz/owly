@@ -35,4 +35,4 @@ async function bookDetails (key) {
   }
 }
 
-export {searchByCategory, bookDetails};
+export {searchByCategory, bookDetails, limit};
