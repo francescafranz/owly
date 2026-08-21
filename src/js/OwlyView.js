@@ -52,7 +52,9 @@ function showModal(selectedBook, description) {
   //Overlay
   const overlay = document.createElement('div');
   overlay.classList.add('modal-overlay');
-  overlay.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if(e.target === overlay){closeModal();}
+  });
 
   //Modal
   const modalContainer = document.createElement('div');
