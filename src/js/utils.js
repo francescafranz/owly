@@ -4,7 +4,7 @@
 export function formatAuthors(authors) { 
   
   if (!authors || authors.length === 0) {
-    return 'No authors found';
+    return 'Nessun autore trovato';
   } else {
     const authorsNames = authors.map(author => author.name).join(', ');
     return authorsNames;
@@ -14,7 +14,7 @@ export function formatAuthors(authors) {
 
 export function extractDescription(description) { 
  if (!description) {
-  return 'No description available';
+  return 'Nessuna descrizione disponibile';
  } else if (typeof(description) === 'object') {
   return description.value;
  } else {

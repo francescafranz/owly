@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { formatAuthors } from '../src/js/utils.js'
+import { formatAuthors, extractDescription } from '../src/js/utils.js'
 
 describe('formatAuthors', () => {
 
@@ -8,8 +8,26 @@ describe('formatAuthors', () => {
     expect(formatAuthors(input)).toBe('J.R.R. Tolkien, C.S. Lewis')
   })
 
-  it('restituisce "No authors found" se la lista è vuota', () => {
-    expect(formatAuthors([])).toBe('No authors found')
+  it('restituisce "Nessun autore trovato" se la lista è vuota', () => {
+    expect(formatAuthors([])).toBe('Nessun autore trovato')
+  })
+  it('restituisce "Nessun autore trovato" se null', () => {
+    expect(formatAuthors(null)).toBe('Nessun autore trovato')
+  })
+  it('restituisce "Nessun autore trovato" se undefined', () => {
+    expect(formatAuthors(undefined)).toBe('Nessun autore trovato')
   })
 
+})
+
+describe('extractDescription', () => {
+  it('restituisce il valore se è un oggetto {value: "..."}', () => {
+    expect(extractDescription({value: 'Una descrizione'})).toBe('Una descrizione')
+  })
+  it('restituisce la stringa se è una stringa', () => {
+    expect(extractDescription('Una descrizione')).toBe('Una descrizione')
+  })
+  it('restituisce "Nessuna descrizione disponibile" se null', () => {
+    expect(extractDescription(null)).toBe('Nessuna descrizione disponibile')
+  })
 })
