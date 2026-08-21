@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { formatAuthors, extractDescription } from '../src/js/utils.js'
+import { formatAuthors, extractDescription, generatePageNumber } from '../src/js/utils.js'
 
 describe('formatAuthors', () => {
 
@@ -29,5 +29,35 @@ describe('extractDescription', () => {
   })
   it('restituisce "Nessuna descrizione disponibile" se null', () => {
     expect(extractDescription(null)).toBe('Nessuna descrizione disponibile')
+  })
+})
+
+describe('generatePageNumbers', () => {
+  //totalPages <= 7
+  it('restituisce [1, 2, 3] se siamo a pagina 2 e ci sono solo tre pagine', () => {
+    expect(generatePageNumber(2, 3)).toStrictEqual([1, 2, 3])
+  })
+  it(`restituisce [1] se c'è solo una pagina`, () => {
+    expect(generatePageNumber(1, 1)).toStrictEqual([1])
+  })
+
+  //totalPages > 7
+  it(`restituisce [1, 2, '...', 10] se siamo a pagina 1 e ci sono 10 pagine`, () => {
+    expect(generatePageNumber(1, 10)).toStrictEqual([1, 2, '...', 10])
+  })
+  it(`restituisce [1, '...', 4, 5, 6, '...', 10] se siamo a pagina 5 e ci sono 10 pagine`, () => {
+    expect(generatePageNumber(5, 10)).toStrictEqual([1, '...', 4, 5, 6, '...', 10])
+  })
+  it(`restituisce [1, '...', 9, 10] se siamo a pagina 10 e ci sono 10 pagine`, () => {
+    expect(generatePageNumber(10, 10)).toStrictEqual([1, '...', 9, 10])
+  })
+  it(`restituisce [1, 2, '...', 53] se siamo a pagina 1 e ci sono 53 pagine`, () => {
+    expect(generatePageNumber(1, 53)).toStrictEqual([1, 2, '...', 53])
+  })
+  it(`restituisce [1, '...', 26, 27, 28, '...', 53] se siamo a pagina 27 e ci sono 53 pagine`, () => {
+    expect(generatePageNumber(27, 53)).toStrictEqual([1, '...', 26, 27, 28, '...', 53])
+  })
+  it(`restituisce [1, '...', 52, 53] se siamo a pagina 53 e ci sono 53 pagine`, () => {
+    expect(generatePageNumber(53, 53)).toStrictEqual([1, '...', 52, 53])
   })
 })
