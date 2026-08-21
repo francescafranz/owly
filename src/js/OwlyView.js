@@ -1,5 +1,5 @@
 import { formatAuthors, extractDescription } from './utils.js';
-import { appState } from './AppState.js';
+import coverPlaceholder from '../assets/img/cover_placeholder.png';
 
 //Funzioni per renderizzare la lista libri nel DOM
 //funzione renderBooks(works, category, workCount): 'Risultati per categoria', badge conteggio, griglia card nel #results
@@ -28,9 +28,9 @@ function createBookCard(work) {
   if (work.cover_id && work.cover_id !== null && work.cover_id !== undefined) {
     bookCover.src = `https://covers.openlibrary.org/b/id/${work.cover_id}-M.jpg`;
   } else {
-    bookCover.src = '../src/assets/img/cover_placeholder.png';
+    bookCover.src = `${coverPlaceholder}`;
   }
-  bookCover.setAttribute('onerror', 'this.src="../src/assets/img/cover_placeholder.png"');
+  bookCover.setAttribute('onerror', `this.src= '${coverPlaceholder}'`);
 
   //Info Container
   const infoContainer = document.createElement('div');
@@ -64,9 +64,9 @@ function showModal(selectedBook, description) {
   if (selectedBook.cover_id && selectedBook.cover_id !== null && selectedBook.cover_id !== undefined) {
     bookCover.src = `https://covers.openlibrary.org/b/id/${selectedBook.cover_id}-M.jpg`;
   } else {
-    bookCover.src = '../src/assets/img/cover_placeholder.png';
+    bookCover.src = `${coverPlaceholder}`;
   }
-  bookCover.setAttribute('onerror', 'this.src="../src/assets/img/cover_placeholder.png"');
+  bookCover.setAttribute('onerror', `this.src= '${coverPlaceholder}'`);
   const bookTitle = document.createElement('h2');
   bookTitle.textContent = selectedBook.title;
   const authorsNames = document.createElement('p');
@@ -136,3 +136,5 @@ function showEmptyState() {
   emptyState.textContent = 'Nessun risultato';
   document.getElementById('results').appendChild(emptyState);
 }
+
+export {renderBooks, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState};
