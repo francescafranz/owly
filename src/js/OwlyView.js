@@ -40,7 +40,8 @@ function createBookCard(work) {
   authorsNames.textContent = formatAuthors(work.authors);
   const detailsButton = document.createElement('button');
   detailsButton.textContent = 'Vedi dettagli';
-  detailsButton.addEventListener('click', () => showModal(work));
+  detailsButton.classList.add('show-details');
+  detailsButton.dataset.key = work.key;
   infoContainer.append(bookTitle, authorsNames, detailsButton);
   card.append(bookCover, infoContainer);
   return card;
