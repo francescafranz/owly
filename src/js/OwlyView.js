@@ -1,4 +1,4 @@
-import { formatAuthors, extractDescription } from './utils.js';
+import { formatAuthors, extractDescription, generatePageNumber } from './utils.js';
 import coverPlaceholder from '../assets/img/cover_placeholder.png';
 
 //Funzioni per renderizzare la lista libri nel DOM
@@ -24,6 +24,32 @@ function renderBooks(works) {
   const bookCards = works.map(work => createBookCard(work));
   bookCards.forEach(card => booksGrid.appendChild(card));
   document.getElementById('results').appendChild(booksGrid);
+}
+
+//Pagine risultati
+function renderPagination(currentPage, totalPages) {
+  document.querySelector('.pagination')?.remove();
+  const pageNumbers = generatePageNumber(currentPage, totalPages);
+  const pagesNavigation = document.createElement('nav');
+  pagesNavigation.classList.add('pagination');
+  pageNumbers.forEach(arrayElement => {
+    if(typeof(arrayElement) === 'number'){
+    const navButton = document.createElement('button');
+    navButton.classList.add('page-btn');
+    navButton.textContent = arrayElement;
+    navButton.dataset.page = arrayElement;
+    if(arrayElement === currentPage) {
+      navButton.classList.add('active');
+      navButton.disabled = true;
+    }
+    pagesNavigation.appendChild(navButton);
+    } else if(arrayElement === '...') {
+      const threeDots = document.createElement('span');
+      threeDots.textContent = arrayElement;
+      pagesNavigation.appendChild(threeDots);
+    }
+  })
+  document.getElementById('results').appendChild(pagesNavigation);
 }
 
 //createBookCard(work): cover con fallback, titolo, autore/i, 'vedi dettagli' btn - formatAuthors da utils e vedi dettagli salva libro in appState.selectedBook
@@ -119,7 +145,6 @@ function closeModal() {
 }
 
 //Funzioni per loader, errore e stato vuoto
-
 function showLoader () {
 document.getElementById('results').innerHTML = '';
 const loader = document.createElement('div');
@@ -147,4 +172,4 @@ function showEmptyState() {
   document.getElementById('results').appendChild(emptyState);
 }
 
-export {renderHeader, renderBooks, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState};
+export {renderHeader, renderBooks, renderPagination, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState};
