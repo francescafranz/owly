@@ -36,6 +36,9 @@ if (!result.works || result.works.length === 0){
 } else {
   renderHeader(appState.currentCategory, appState.worksCount);
   renderBooks(appState.books);
+  const currentPage = appState.loadedNumber / limit + 1;
+  const totalPages = Math.ceil(appState.worksCount / limit);
+  renderPagination(currentPage, totalPages);
 } } catch (error) {
   showError('Ops! Qualcosa è andato storto!');
 } finally {
