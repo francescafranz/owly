@@ -20,7 +20,7 @@ async function searchByCategory (category, offset) {
 
 //API for book details
 async function bookDetails (key) {
-  const urlOpenLibraryBookKey = `https://openlibrary.org/${key}.json`;
+  const urlOpenLibraryBookKey = `https://openlibrary.org${key}.json`;
   let bookDetailsResponse;
   try {
     bookDetailsResponse = await axios.get(urlOpenLibraryBookKey);
