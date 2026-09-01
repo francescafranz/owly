@@ -2,21 +2,28 @@ import { formatAuthors, extractDescription } from './utils.js';
 import coverPlaceholder from '../assets/img/cover_placeholder.png';
 
 //Funzioni per renderizzare la lista libri nel DOM
-//funzione renderBooks(works, category, workCount): 'Risultati per categoria', badge conteggio, griglia card nel #results
-function renderBooks(works, category, workCount) {
- const resultsHeader = document.createElement('header');
- let h2 = document.createElement('h2');
- h2.textContent = `Risultati per ${category}`;
- const titolo = resultsHeader.appendChild(h2);
- let span = document.createElement('span')
- span.textContent = `${workCount} libri trovati`;
- const badge = titolo.appendChild(span);
- const booksGrid = document.createElement('div');
- booksGrid.classList.add('books-grid');
- const bookCards = works.map(work => createBookCard(work));
- bookCards.forEach(card => booksGrid.appendChild(card));
- document.getElementById('results').appendChild(resultsHeader);
- document.getElementById('results').appendChild(booksGrid);
+//Render di header e griglia separati per supportare la paginazione
+
+//Si chiama una volta per ricerca
+function renderHeader(category, workCount) {
+  const resultsHeader = document.createElement('header');
+  const titleText = document.createElement('h2');
+  titleText.textContent = `Risultati per ${category}`;
+  const title = resultsHeader.appendChild(titleText);
+  const badge = document.createElement('span')
+  badge.textContent = `${workCount} libri trovati`;
+  title.appendChild(badge);
+  document.getElementById('results').appendChild(resultsHeader);
+}
+
+//Si richiama ad ogni cambio pagina
+function renderBooks(works) {
+  document.querySelector('.books-grid')?.remove();
+  const booksGrid = document.createElement('div');
+  booksGrid.classList.add('books-grid');
+  const bookCards = works.map(work => createBookCard(work));
+  bookCards.forEach(card => booksGrid.appendChild(card));
+  document.getElementById('results').appendChild(booksGrid);
 }
 
 //createBookCard(work): cover con fallback, titolo, autore/i, 'vedi dettagli' btn - formatAuthors da utils e vedi dettagli salva libro in appState.selectedBook
@@ -140,4 +147,4 @@ function showEmptyState() {
   document.getElementById('results').appendChild(emptyState);
 }
 
-export {renderBooks, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState};
+export {renderHeader, renderBooks, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState};

@@ -1,7 +1,7 @@
 // salvare titolo, autori, cover_id e key in appState.selectedBook quando utente clicca su una determinata card
 import { appState } from './AppState.js';
 import {searchByCategory, bookDetails} from './OwlyModel.js';
-import {renderBooks, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState} from './OwlyView.js';
+import {renderHeader, renderBooks, showModal, showLoader, hideLoader, showError, showEmptyState} from './OwlyView.js';
 
 //listener initialization
 function init() {
@@ -32,7 +32,8 @@ appState.worksCount = result.workCount;
 if (!result.works || result.works.length === 0){
   showEmptyState();
 } else {
-  renderBooks(appState.books, appState.currentCategory, appState.worksCount);
+  renderHeader(appState.currentCategory, appState.worksCount);
+  renderBooks(appState.books);
 } } catch (error) {
   showError('Ops! Qualcosa è andato storto!');
 } finally {
