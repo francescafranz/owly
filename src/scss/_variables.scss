@@ -26,3 +26,19 @@ $cover-m-width: 130px;
 $cover-m-height: 200px;
 $cover-l-width: 330px;
 $cover-l-height: 500px;
+
+// -- Grids and breakpoints --
+// Desktop
+$d-grid-columns: 12;
+$d-grid-margin: 96px;
+$d-grid-gutter: 24px;
+
+//Tablet
+$breakpoint-tablet: 768px;
+$t-grid-columns: 6;
+$t-grid-margin: 48px;
+
+//Mobile
+$breakpoint-mobile: 480px;
+$m-grid-columns: 1;
+$m-grid-margin: 16px;

@@ -12,21 +12,32 @@
   </head>
   <body>
     <main class="app">
-      <section class="hero">
-        <h1>Owly</h1>
-        <p>Cerca i libri per categoria</p>
-
-        <form id="search-form" class="search-box">
-          <input
+      <header class="header">
+        <div class="header-top">
+          <img class="header-logo" src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books">
+        </div>
+        <div class="header-content">
+          <h1>Trova nuovi libri da leggere!</h1>
+          <p>Cerca per categoria e scegli tra più titoli in diverse lingue</p> 
+          <form id="search-form" class="search-box">
+            <img class="search-icon" src="./src/assets/img/svg/Search icon.svg" alt="Cerca">
+            <input
             id="subject-input"
             type="text"
-            placeholder="Es. thriller"
-          />
-          <button type="submit">Cerca</button>
-        </form>
-      </section>
+            placeholder="Es. thriller, fantasy, avventura..."
+            />
+            <button type="submit">Cerca</button>
+          </form> 
+        </div>
+      </header>
 
       <section id="results"></section>
+      <footer class="footer">
+        <div class="footer-logo">
+          <img src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books"> <!--32px*132px-->
+        </div>
+        <p class="footer-text">Final project JavaScript Advanced - Developed and Designed by Francesca Franz</p>
+      </footer>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>
