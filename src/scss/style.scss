@@ -21,6 +21,33 @@
   --default-radius: #{variables.$radius-l};
   --s-placeholder-radius: #{variables.$radius-s};
   --m-placeholder-radius: #{variables.$radius-m};
+
+  // -- Cover dimensions --
+  --card-cover-width: #{variables.$cover-s-width};
+  --card-cover-height: #{variables.$cover-s-height};
+  --modal-cover-width: #{variables.$cover-m-width};
+  --modal-cover-height: #{variables.$cover-m-height};
+  --large-cover-width: #{variables.$cover-l-width};
+  --large-cover-height: #{variables.$cover-l-height};
+
+  // -- Grids and breakpoints --
+  // Desktop
+  --desktop-columns: #{variables.$d-grid-columns};
+  --desktop-margin: #{variables.$d-grid-margin};
+  --desktop-gutter: #{variables.$d-grid-gutter};
+
+  //Tablet
+  --tablet-breakpoint: #{variables.$breakpoint-tablet};
+  --tablet-columns: #{variables.$t-grid-columns};
+  --tablet-margin: #{variables.$t-grid-margin};
+
+  //Mobile
+  --mobile-breakpoint: #{variables.$breakpoint-mobile};
+  --mobile-columns: #{variables.$m-grid-columns};
+  --mobile-margin: #{variables.$m-grid-margin};
+
+  //Page Margin
+  --page-margin: var(--desktop-margin);
 }
 
 // -- Basic reset --
@@ -82,7 +109,66 @@ h4 {
   font-weight: 600;
 }
 
-@media (max-width: variables.$breakpoint-mobile) {
+// -- App Layout --
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// -- Header Style --
+header {
+  background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+  padding: 16px var(--page-margin) 64px;
+}
+
+.header-content {
+  text-align: center;
+}
+
+// -- Results Style --
+
+#results {
+  flex: 1;
+  background-color: var(--white);
+  padding: 64px var(--page-margin);
+}
+
+// -- Footer Style --
+
+footer {
+  background-color: var(--secondary);
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px var(--page-margin);
+}
+
+.footer-text {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+// -- Media queries --
+
+// -- Tablet
+@media (max-width: var(--tablet-breakpoint)) {
+
+  :root {
+    --page-margin: var(--tablet-margin);
+  }
+}
+
+// -- Mobile
+@media (max-width: var(--mobile-breakpoint)) {
+
+  :root {
+    --page-margin: var(--mobile-margin);
+  }
+
+  // Typography
   h1 {
     font-size: 36px;
     line-height: 40px;
@@ -96,5 +182,23 @@ h4 {
   h3 {
     font-size: 22px;
     line-height: 28px;
+  }
+
+  // Header
+  header{
+    padding: 16px var(--page-margin) 48px;
+  }
+
+  // Results
+  #results {
+    padding: 48px var(--page-margin);
+  }
+
+  //Footer
+  footer {
+    padding: 32px var(--page-margin);
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
   }
 }
