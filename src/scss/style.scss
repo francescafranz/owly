@@ -1,0 +1,31 @@
+@use 'variables';
+
+:root {
+  // -- Colors --
+  --white: #{variables.$carta};
+  --black: #{variables.$inchiostro};
+  --neutral: #{variables.$pergamena};
+  --neutral-dark: #{variables.$pergamena-scuro};
+  --error: #{variables.$mattone};
+  --error-light: #{variables.$mattone-chiaro};
+  --primary: #{variables.$salvia};
+  --primary-light: #{variables.$salvia-chiaro};
+  --secondary: #{variables.$corallo};
+  --secondary-light: #{variables.$corallo-chiaro};
+
+  // -- Font --
+  --titles-font: #{variables.$font-serif};
+  --text-font: #{variables.$font-sans-serif};
+
+  // -- Radius --
+  --default-radius: #{variables.$radius-l};
+  --s-placeholder-radius: #{variables.$radius-s};
+  --m-placeholder-radius: #{variables.$radius-m};
+}
+
+// -- Basic reset --
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
