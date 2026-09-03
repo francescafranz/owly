@@ -56,7 +56,7 @@ function renderPagination(currentPage, totalPages) {
 //createBookCard(work): cover con fallback, titolo, autore/i, 'vedi dettagli' btn - formatAuthors da utils e vedi dettagli salva libro in appState.selectedBook
 function createBookCard(work) {
   const card = document.createElement('div');
-
+  card.classList.add('book-card');
   //Cover Image
   const bookCover = document.createElement('img');
   if (work.cover_id && work.cover_id !== null && work.cover_id !== undefined) {
@@ -74,7 +74,7 @@ function createBookCard(work) {
   authorsNames.textContent = formatAuthors(work.authors);
   const detailsButton = document.createElement('button');
   detailsButton.textContent = 'Vedi dettagli';
-  detailsButton.classList.add('show-details');
+  detailsButton.classList.add('show-details', 'button-secondary');
   detailsButton.dataset.key = work.key;
   infoContainer.append(bookTitle, authorsNames, detailsButton);
   card.append(bookCover, infoContainer);
@@ -129,9 +129,11 @@ function showModal(selectedBook, description) {
   const openLibraryButton = document.createElement('button');
   openLibraryButton.textContent = 'Apri in Open Library';
   openLibraryButton.addEventListener('click', () => window.open(`https://openlibrary.org${selectedBook.key}`, '_blank'));
+  openLibraryButton.classList.add('button-primary');
   const closeButton = document.createElement('button');
   closeButton.textContent = 'Chiudi';
   closeButton.addEventListener('click', closeModal);
+  closeButton.classList.add('button-secondary');
   modalFooter.append(openLibraryButton, closeButton);
   modalContainer.appendChild(modalFooter);
 

@@ -103,10 +103,60 @@ h4 {
   line-height: 26px;
 }
 
-.label-tag, button {
+.label-tag {
   font-size: 14px;
   line-height: 18px;
   font-weight: 600;
+}
+
+//Buttons
+
+button {
+  padding: 10px 48px;
+  border-radius: var(--default-radius);
+  font-family: var(--text-font);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid var(--primary);
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: var(--secondary);
+  }
+  &:disabled{
+    border-color: var(--neutral-dark);
+  }
+}
+
+//Primary
+.button-primary {
+  background-color: var(--primary);
+  color: var(--white);
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--secondary);
+  }
+  &:disabled {
+    background-color: var(--neutral-dark);
+  }
+}
+
+//Secondary
+.button-secondary {
+  background-color: var(--white);
+  color: var(--primary);
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--secondary);
+  }
+  &:disabled {
+    color: var(--neutral-dark);
+  }
 }
 
 // -- App Layout --
@@ -124,6 +174,47 @@ header {
 
 .header-content {
   text-align: center;
+}
+
+// Search box
+.search-box {
+  display: flex;
+  align-items: center;
+  max-width: 628px;
+  width: 90%;
+  margin: 24px auto 0;
+  height: 54px;
+  border: 1px solid var(--primary);
+  border-radius: var(--default-radius);
+  padding: 0 24px;
+  background-color: var(--white);
+}
+
+.search-box .button-primary {
+  padding: 12px 24px;
+  flex-shrink: 0;
+}
+
+.search-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+#subject-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: var(--text-font);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--black);
+  padding: 0 16px;
+
+  &::placeholder {
+    color: var(--neutral-dark);
+  }
 }
 
 // -- Results Style --
