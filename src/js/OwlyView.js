@@ -7,12 +7,14 @@ import coverPlaceholderModal from '../assets/img/png/cover-placeholder-M.png';
 
 //Si chiama una volta per ricerca
 function renderHeader(category, workCount) {
-  const resultsHeader = document.createElement('header');
-  const titleText = document.createElement('h2');
-  titleText.textContent = `Risultati per ${category}`;
-  const title = resultsHeader.appendChild(titleText);
-  const badge = document.createElement('span')
-  badge.textContent = `${workCount} libri trovati`;
+  const resultsHeader = document.createElement('results-header');
+  const resultsText = document.createElement('p');
+  resultsText.classList.add('body-large');
+  resultsText.textContent = `Risultati per ${category}:`;
+  const title = resultsHeader.appendChild(resultsText);
+  const badge = document.createElement('span');
+  badge.classList.add('label-tag')
+  badge.textContent = `${workCount} libri`;
   title.appendChild(badge);
   document.getElementById('results').appendChild(resultsHeader);
 }
@@ -60,7 +62,7 @@ function createBookCard(work) {
   //Cover Image
   const bookCover = document.createElement('img');
   if (work.cover_id && work.cover_id !== null && work.cover_id !== undefined) {
-    bookCover.src = `https://covers.openlibrary.org/b/id/${work.cover_id}-S.jpg`;
+    bookCover.src = `https://covers.openlibrary.org/b/id/${work.cover_id}-M.jpg`;
   } else {
     bookCover.src = `${coverPlaceholderCard}`;
   }
@@ -68,16 +70,20 @@ function createBookCard(work) {
 
   //Info Container
   const infoContainer = document.createElement('div');
-  const bookTitle = document.createElement('h3');
+  infoContainer.classList.add('card-info');
+  const bookTitle = document.createElement('h2');
   bookTitle.textContent = work.title;
-  const authorsNames = document.createElement('p');
+  const authorsNames = document.createElement('h4');
   authorsNames.textContent = formatAuthors(work.authors);
   const detailsButton = document.createElement('button');
   detailsButton.textContent = 'Vedi dettagli';
   detailsButton.classList.add('show-details', 'button-secondary');
   detailsButton.dataset.key = work.key;
-  infoContainer.append(bookTitle, authorsNames, detailsButton);
-  card.append(bookCover, infoContainer);
+  const bookInfo = document.createElement('div');
+  bookInfo.classList.add('book-info');
+  infoContainer.append(bookTitle, authorsNames);
+  bookInfo.append(bookCover, infoContainer);
+  card.append(bookInfo, detailsButton);
   return card;
 }
 

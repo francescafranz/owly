@@ -23,27 +23,24 @@
   --m-placeholder-radius: #{variables.$radius-m};
 
   // -- Cover dimensions --
-  --card-cover-width: #{variables.$cover-s-width};
-  --card-cover-height: #{variables.$cover-s-height};
-  --modal-cover-width: #{variables.$cover-m-width};
-  --modal-cover-height: #{variables.$cover-m-height};
-  --large-cover-width: #{variables.$cover-l-width};
-  --large-cover-height: #{variables.$cover-l-height};
+  --card-cover-width: #{variables.$cover-m-width};
+  --card-cover-height: #{variables.$cover-m-height};
+  --modal-cover-width: #{variables.$cover-l-width};
+  --modal-cover-height: #{variables.$cover-l-height};
+  --small-cover-width: #{variables.$cover-s-width};
+  --small-cover-height: #{variables.$cover-s-height};
 
   // -- Grids and breakpoints --
   // Desktop
-  --desktop-columns: #{variables.$d-grid-columns};
   --desktop-margin: #{variables.$d-grid-margin};
   --desktop-gutter: #{variables.$d-grid-gutter};
 
   //Tablet
   --tablet-breakpoint: #{variables.$breakpoint-tablet};
-  --tablet-columns: #{variables.$t-grid-columns};
   --tablet-margin: #{variables.$t-grid-margin};
 
   //Mobile
   --mobile-breakpoint: #{variables.$breakpoint-mobile};
-  --mobile-columns: #{variables.$m-grid-columns};
   --mobile-margin: #{variables.$m-grid-margin};
 }
 
@@ -104,6 +101,7 @@ h4 {
   font-size: 14px;
   line-height: 18px;
   font-weight: 600;
+  color: var(--primary);
 }
 
 //Buttons
@@ -238,6 +236,45 @@ header {
   padding: 64px var(--desktop-margin);
 }
 
+.books-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--desktop-gutter);
+}
+
+.book-card {
+  display: flex;
+  border: 1px solid var(--neutral);
+  background-color: var(--white);
+  border-radius: var(--default-radius);
+  box-shadow: 0 16px 32px rgba(42, 42, 42, 0.25);
+  padding: 32px;
+  gap: 24px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.card-info {
+  flex: 1;
+  gap: 16px;
+}
+
+.card-info h4 {
+  color: var(--neutral-dark);
+}
+
+.show-details {
+  width: 100%;
+  margin-top: 16px;
+}
+
 // -- Footer Style --
 
 footer {
@@ -272,8 +309,18 @@ footer {
     font-size: 40px;
   }
 
+  button {
+    padding: 10px 24px;
+  }
+
   #results {
     padding: 40px var(--tablet-margin);
+  }
+
+   .books-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
   }
 
   footer {
@@ -291,13 +338,22 @@ footer {
   }
 
   h2 {
-    font-size: 28px;
-    line-height: 34px;
+    font-size: 24px;
+    line-height: 30px;
   }
 
   h3 {
     font-size: 22px;
     line-height: 28px;
+  }
+
+  h4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  button {
+  padding: 4px 16px;
   }
 
   // Header
@@ -318,6 +374,17 @@ footer {
   // Results
   #results {
     padding: 24px var(--mobile-margin);
+  }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
+
+  .book-card img {
+    width: var(--small-cover-width);
+    height: var(--small-cover-height);
   }
 
   //Footer
