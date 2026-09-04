@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/src/scss/style.scss">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +14,18 @@
     <main class="app">
       <header>
         <div class="header-top">
-          <img class="header-logo" src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books">
+          <img class="logo" src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books">
         </div>
         <div class="header-content">
           <h1>Trova nuovi libri da leggere!</h1>
           <p>Cerca per categoria e scegli tra più titoli in diverse lingue</p> 
           <form id="search-form" class="search-box">
-            <img class="search-icon" src="./src/assets/img/svg/Search icon.svg" alt="Cerca">
+            <button type="submit" class="search-icon" aria-label="Cerca">
+              <img src="./src/assets/img/svg/Search icon.svg" alt="">
+            </button>
             <input
             id="subject-input"
-            type="text"
+            type="search"
             placeholder="Es. thriller, fantasy, avventura..."
             />
             <button class="button-primary" type="submit">Cerca</button>
@@ -33,10 +35,13 @@
 
       <section id="results"></section>
       <footer>
-        <div class="footer-logo">
-          <img src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books"> <!--32px*132px-->
+        <div>
+          <img class="logo" src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books"> 
         </div>
-        <p class="footer-text">Final project JavaScript Advanced - Developed and Designed by Francesca Franz</p>
+        <div class="footer-text">
+          <p>Final project JavaScript Advanced</p>
+          <p>Developed and Designed by Francesca Franz</p>
+        </div>
       </footer>
     </main>
     <script type="module" src="/src/main.js"></script>
