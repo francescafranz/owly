@@ -261,15 +261,23 @@ footer {
 // -- Tablet
 @media (max-width: variables.$breakpoint-tablet) {
   header {
-    padding: 16px var(--tablet-margin) 64px;
+    padding: 16px var(--tablet-margin) 24px;
+  }
+
+  .header-content {
+    padding-top: 36px;
+  }
+
+  h1 {
+    font-size: 40px;
   }
 
   #results {
-    padding: 64px var(--tablet-margin);
+    padding: 40px var(--tablet-margin);
   }
 
   footer {
-    padding: 26px var(--tablet-margin);
+    padding: 24px var(--tablet-margin);
   }
 }
 
@@ -299,7 +307,7 @@ footer {
 
   .header-content {
   padding-top: 16px;
-  gap: 16px;
+  gap: 8px;
 }
 
   //Search bar
