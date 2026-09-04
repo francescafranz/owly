@@ -1,63 +1,43 @@
-@use 'variables';
-
 :root {
-  // -- Colors --
-  --white: #{variables.$carta};
-  --black: #{variables.$inchiostro};
-  --neutral: #{variables.$pergamena};
-  --neutral-dark: #{variables.$pergamena-scuro};
-  --error: #{variables.$mattone};
-  --error-light: #{variables.$mattone-chiaro};
-  --primary: #{variables.$salvia};
-  --primary-light: #{variables.$salvia-chiaro};
-  --secondary: #{variables.$corallo};
-  --secondary-light: #{variables.$corallo-chiaro};
-
-  // -- Font --
-  --titles-font: #{variables.$font-serif};
-  --text-font: #{variables.$font-sans-serif};
-
-  // -- Radius --
-  --default-radius: #{variables.$radius-l};
-  --s-placeholder-radius: #{variables.$radius-s};
-  --m-placeholder-radius: #{variables.$radius-m};
-
-  // -- Cover dimensions --
-  --card-cover-width: #{variables.$cover-s-width};
-  --card-cover-height: #{variables.$cover-s-height};
-  --modal-cover-width: #{variables.$cover-m-width};
-  --modal-cover-height: #{variables.$cover-m-height};
-  --large-cover-width: #{variables.$cover-l-width};
-  --large-cover-height: #{variables.$cover-l-height};
-
-  // -- Grids and breakpoints --
-  // Desktop
-  --desktop-columns: #{variables.$d-grid-columns};
-  --desktop-margin: #{variables.$d-grid-margin};
-  --desktop-gutter: #{variables.$d-grid-gutter};
-
-  //Tablet
-  --tablet-breakpoint: #{variables.$breakpoint-tablet};
-  --tablet-columns: #{variables.$t-grid-columns};
-  --tablet-margin: #{variables.$t-grid-margin};
-
-  //Mobile
-  --mobile-breakpoint: #{variables.$breakpoint-mobile};
-  --mobile-columns: #{variables.$m-grid-columns};
-  --mobile-margin: #{variables.$m-grid-margin};
-
-  //Page Margin
+  --white: #FBF8F3;
+  --black: #2A2A28;
+  --neutral: #DCD4C3;
+  --neutral-dark: #8A8578;
+  --error: #A8452E;
+  --error-light: #F6DCD5;
+  --primary: #4F7D5B;
+  --primary-light: #A9C7AE;
+  --secondary: #8D3E25;
+  --secondary-light: #F3C4B5;
+  --titles-font: Lora, serif;
+  --text-font: Karla, sans-serif;
+  --default-radius: 24px;
+  --s-placeholder-radius: 8px;
+  --m-placeholder-radius: 12px;
+  --card-cover-width: 65px;
+  --card-cover-height: 100px;
+  --modal-cover-width: 130px;
+  --modal-cover-height: 200px;
+  --large-cover-width: 330px;
+  --large-cover-height: 500px;
+  --desktop-columns: 12;
+  --desktop-margin: 96px;
+  --desktop-gutter: 24px;
+  --tablet-breakpoint: 768px;
+  --tablet-columns: 6;
+  --tablet-margin: 48px;
+  --mobile-breakpoint: 480px;
+  --mobile-columns: 1;
+  --mobile-margin: 16px;
   --page-margin: var(--desktop-margin);
 }
 
-// -- Basic reset --
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-// -- Typography --
 body {
   font-family: var(--text-font);
   font-size: 16px;
@@ -109,8 +89,6 @@ h4 {
   font-weight: 600;
 }
 
-//Buttons
-
 button {
   padding: 10px 48px;
   border-radius: var(--default-radius);
@@ -121,52 +99,42 @@ button {
   cursor: pointer;
   transition: all 0.2s ease;
   border: 2px solid var(--primary);
-  &:hover,
-  &:focus,
-  &:active {
-    border-color: var(--secondary);
-  }
-  &:disabled{
-    border-color: var(--neutral-dark);
-  }
+}
+button:hover, button:focus, button:active {
+  border-color: var(--secondary);
+}
+button:disabled {
+  border-color: var(--neutral-dark);
 }
 
-//Primary
 .button-primary {
   background-color: var(--primary);
   color: var(--white);
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: var(--secondary);
-  }
-  &:disabled {
-    background-color: var(--neutral-dark);
-  }
+}
+.button-primary:hover, .button-primary:focus, .button-primary:active {
+  background-color: var(--secondary);
+}
+.button-primary:disabled {
+  background-color: var(--neutral-dark);
 }
 
-//Secondary
 .button-secondary {
   background-color: var(--white);
   color: var(--primary);
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--secondary);
-  }
-  &:disabled {
-    color: var(--neutral-dark);
-  }
+}
+.button-secondary:hover, .button-secondary:focus, .button-secondary:active {
+  color: var(--secondary);
+}
+.button-secondary:disabled {
+  color: var(--neutral-dark);
 }
 
-// -- App Layout --
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-// -- Header Style --
 header {
   background: linear-gradient(to bottom, var(--primary), var(--primary-light));
   padding: 16px var(--page-margin) 64px;
@@ -176,7 +144,6 @@ header {
   text-align: center;
 }
 
-// Search box
 .search-box {
   display: flex;
   align-items: center;
@@ -206,21 +173,16 @@ header {
   line-height: 24px;
   color: var(--black);
   padding: 0 16px;
-
-  &::placeholder {
-    color: var(--neutral-dark);
-  }
 }
-
-// -- Results Style --
+#subject-input::placeholder {
+  color: var(--neutral-dark);
+}
 
 #results {
   flex: 1;
   background-color: var(--white);
   padding: 64px var(--page-margin);
 }
-
-// -- Footer Style --
 
 footer {
   background-color: var(--secondary);
@@ -237,54 +199,37 @@ footer {
   font-weight: 600;
 }
 
-// -- Media queries --
-
-// -- Tablet
 @media (max-width: var(--tablet-breakpoint)) {
-
   :root {
     --page-margin: var(--tablet-margin);
   }
 }
-
-// -- Mobile
 @media (max-width: var(--mobile-breakpoint)) {
-
   :root {
     --page-margin: var(--mobile-margin);
   }
-
-  // Typography
   h1 {
     font-size: 36px;
     line-height: 40px;
   }
-
   h2 {
     font-size: 28px;
     line-height: 34px;
   }
-
   h3 {
     font-size: 22px;
     line-height: 28px;
   }
-
-  // Header
-  header{
+  header {
     padding: 16px var(--page-margin) 48px;
   }
-
-  // Results
   #results {
     padding: 48px var(--page-margin);
   }
-
-  //Footer
   footer {
     padding: 32px var(--page-margin);
     flex-direction: column;
     gap: 16px;
     text-align: center;
   }
-}
+}/*# sourceMappingURL=style.css.map */
