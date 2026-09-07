@@ -12,13 +12,17 @@ export function formatAuthors(authors) {
 
 }
 
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, '');
+}
+
 export function extractDescription(description) { 
  if (!description) {
   return 'Nessuna descrizione disponibile';
  } else if (typeof(description) === 'object') {
-  return description.value;
+  return stripHtml(description.value);
  } else {
-  return description;
+  return stripHtml(description);
  }
 }
 

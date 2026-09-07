@@ -117,8 +117,8 @@ function showModal(selectedBook, description) {
   modalContainer.classList.add('modal');
 
   //Modal Header
-  const modalHeader = document.createElement('div');
-  modalHeader.classList.add('modal-header');
+  const modalContent = document.createElement('div');
+  modalContent.classList.add('modal-content');
   const bookCover = document.createElement('img');
   if (selectedBook.cover_id && selectedBook.cover_id !== null && selectedBook.cover_id !== undefined) {
     bookCover.src = `https://covers.openlibrary.org/b/id/${selectedBook.cover_id}-M.jpg`;
@@ -126,24 +126,33 @@ function showModal(selectedBook, description) {
     bookCover.src = `${coverPlaceholderModal}`;
   }
   bookCover.setAttribute('onerror', `this.src= '${coverPlaceholderModal}'`);
+  const modalText = document.createElement('div');
+  modalText.classList.add('modal-text');
   const bookTitle = document.createElement('h2');
   bookTitle.textContent = selectedBook.title;
+  const modalMeta = document.createElement('div');
+  modalMeta.classList.add('modal-meta');
   const authorsNames = document.createElement('p');
   authorsNames.textContent = formatAuthors(selectedBook.authors);
+  const separator = document.createElement('span');
+  separator.textContent = '·';
   const publishYear = document.createElement('p');
   publishYear.textContent = selectedBook.first_publish_year;
-  modalHeader.append(bookCover, bookTitle, authorsNames, publishYear);
-  modalContainer.appendChild(modalHeader);
+  modalMeta.append(authorsNames, separator, publishYear);
+  modalText.append(bookTitle, modalMeta);
+  modalContent.appendChild(bookCover);
 
   //Modal Body
   const modalBody = document.createElement('div');
   modalBody.classList.add('modal-body');
-  const descriptionTitle = document.createElement('h4');
+  const descriptionTitle = document.createElement('h3');
   descriptionTitle.textContent = 'DESCRIZIONE';
   const bookDescription = document.createElement('p');
   bookDescription.textContent = extractDescription(description);
   modalBody.append(descriptionTitle, bookDescription);
-  modalContainer.appendChild(modalBody);
+  modalText.appendChild(modalBody);
+  modalContent.appendChild(modalText);
+  modalContainer.appendChild(modalContent);
 
   //Modal Footer
   const modalFooter = document.createElement('div');
@@ -156,7 +165,7 @@ function showModal(selectedBook, description) {
   closeButton.textContent = 'Chiudi';
   closeButton.addEventListener('click', closeModal);
   closeButton.classList.add('button-secondary');
-  modalFooter.append(openLibraryButton, closeButton);
+  modalFooter.append(closeButton, openLibraryButton);
   modalContainer.appendChild(modalFooter);
 
   overlay.appendChild(modalContainer);

@@ -30,6 +30,9 @@ describe('extractDescription', () => {
   it('restituisce "Nessuna descrizione disponibile" se null', () => {
     expect(extractDescription(null)).toBe('Nessuna descrizione disponibile')
   })
+  it('restituisce il testo puro se il valore contine HTML', () => {
+    expect(extractDescription({value: '<p>Una descrizione</p>'})).toBe('Una descrizione')
+  })
 })
 
 describe('generatePageNumbers', () => {
