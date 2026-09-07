@@ -1,6 +1,6 @@
-import { formatAuthors, extractDescription, generatePageNumber } from './utils.js';
-import coverPlaceholderCard from '../assets/img/png/cover-placeholder-S.png';
 import coverPlaceholderModal from '../assets/img/png/cover-placeholder-M.png';
+import coverPlaceholderCard from '../assets/img/png/cover-placeholder-S.png';
+import { extractDescription, formatAuthors, generatePageNumber } from './utils.js';
 
 //Funzioni per renderizzare la lista libri nel DOM
 //Render di header e griglia separati per supportare la paginazione
@@ -35,6 +35,14 @@ function renderPagination(currentPage, totalPages) {
   const pageNumbers = generatePageNumber(currentPage, totalPages);
   const pagesNavigation = document.createElement('nav');
   pagesNavigation.classList.add('pagination');
+  const prevArrowButton = document.createElement('button');
+  prevArrowButton.classList.add('page-arrow', 'page-btn');
+  prevArrowButton.textContent = '‹';
+  prevArrowButton.dataset.page = currentPage - 1;
+  if (currentPage === 1) {
+    prevArrowButton.disabled = true;
+  }
+  pagesNavigation.appendChild(prevArrowButton);
   pageNumbers.forEach(arrayElement => {
     if(typeof(arrayElement) === 'number'){
     const navButton = document.createElement('button');
@@ -52,6 +60,14 @@ function renderPagination(currentPage, totalPages) {
       pagesNavigation.appendChild(threeDots);
     }
   })
+  const nextArrowButton = document.createElement('button');
+  nextArrowButton.classList.add('page-arrow', 'page-btn');
+  nextArrowButton.textContent = '›';
+  nextArrowButton.dataset.page = currentPage + 1;
+  if (currentPage === totalPages) {
+    nextArrowButton.disabled = true;
+  }
+  pagesNavigation.appendChild(nextArrowButton);
   document.getElementById('results').appendChild(pagesNavigation);
 }
 
@@ -181,4 +197,4 @@ function showEmptyState() {
   document.getElementById('results').appendChild(emptyState);
 }
 
-export {renderHeader, renderBooks, renderPagination, showModal, closeModal, showLoader, hideLoader, showError, showEmptyState};
+export { closeModal, hideLoader, renderBooks, renderHeader, renderPagination, showEmptyState, showError, showLoader, showModal };
