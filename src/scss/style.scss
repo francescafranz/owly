@@ -416,6 +416,47 @@ footer {
   text-align: end;
 }
 
+// -- Loader, Error and Empty state
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 0;
+
+  &::before {
+    content: '';
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--neutral);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+    & .loader-text {
+      margin-top: 16px;
+    }
+}
+
+@keyframes spin {
+  to {transform: rotate(360deg);}
+}
+
+.error-message {
+  background-color: var(--error-light);
+  color: var(--error);
+  padding: 16px 24px;
+  border-radius: var(--default-radius);
+  text-align: center;
+}
+
+.empty-state {
+  color: var(--neutral-dark);
+  text-align: center;
+  padding: 64px 0;
+}
+
+
 // -- Media queries --
 
 // -- Tablet

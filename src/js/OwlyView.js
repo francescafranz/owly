@@ -183,7 +183,10 @@ function showLoader () {
 document.getElementById('results').innerHTML = '';
 const loader = document.createElement('div');
 loader.classList.add('loader');
-loader.textContent = 'Caricamento...';
+const loaderText = document.createElement('span');
+loaderText.classList.add('loader-text');
+loaderText.textContent = 'Caricamento...';
+loader.appendChild(loaderText);
 document.getElementById('results').appendChild(loader);
 }
 
@@ -195,6 +198,7 @@ if(loader) loader.remove();
 function showError(message) {
   document.getElementById('results').innerHTML = '';
   const errorMessage = document.createElement('p');
+  errorMessage.classList.add('error-message');
   errorMessage.textContent = message;
   document.getElementById('results').appendChild(errorMessage);
 }
@@ -202,6 +206,7 @@ function showError(message) {
 function showEmptyState() {
   document.getElementById('results').innerHTML = '';
   const emptyState = document.createElement('p');
+  emptyState.classList.add('empty-state');
   emptyState.textContent = 'Nessun risultato';
   document.getElementById('results').appendChild(emptyState);
 }
