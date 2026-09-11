@@ -2,6 +2,8 @@ import coverPlaceholderModal from '../assets/img/png/cover-placeholder-M.png';
 import coverPlaceholderCard from '../assets/img/png/cover-placeholder-S.png';
 import { extractDescription, formatAuthors, generatePageNumber } from './utils.js';
 
+let lastFocusedElement = null;
+
 //Funzioni per renderizzare la lista libri nel DOM
 //Render di header e griglia separati per supportare la paginazione
 
@@ -83,6 +85,7 @@ function createBookCard(work) {
     bookCover.src = `${coverPlaceholderCard}`;
   }
   bookCover.setAttribute('onerror', `this.src= '${coverPlaceholderCard}'`);
+  bookCover.alt = work.title ? `Copertina di ${work.title}` : `Copertina non disponibile`;
 
   //Info Container
   const infoContainer = document.createElement('div');
@@ -105,16 +108,23 @@ function createBookCard(work) {
 
 //Funzione per mostrare il modale con i dettagli e overlay
 function showModal(selectedBook, description) {
+  lastFocusedElement = document.activeElement;
   //Overlay
   const overlay = document.createElement('div');
   overlay.classList.add('modal-overlay');
   overlay.addEventListener('click', (e) => {
     if(e.target === overlay){closeModal();}
   });
+  overlay.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {closeModal();}
+  })
 
   //Modal
   const modalContainer = document.createElement('div');
   modalContainer.classList.add('modal');
+  modalContainer.setAttribute('role', 'dialog');
+  modalContainer.setAttribute('aria-modal', 'true');
+  modalContainer.setAttribute('tabindex', '-1');
 
   //Modal Header
   const modalContent = document.createElement('div');
@@ -126,10 +136,13 @@ function showModal(selectedBook, description) {
     bookCover.src = `${coverPlaceholderModal}`;
   }
   bookCover.setAttribute('onerror', `this.src= '${coverPlaceholderModal}'`);
+  bookCover.alt = selectedBook.title ? `Copertina di ${selectedBook.title}` : `Copertina non disponibile`;
   const modalText = document.createElement('div');
   modalText.classList.add('modal-text');
   const bookTitle = document.createElement('h2');
+  bookTitle.setAttribute('id', 'modal-title');
   bookTitle.textContent = selectedBook.title;
+  modalContainer.setAttribute('aria-labelledby', 'modal-title');
   const modalMeta = document.createElement('div');
   modalMeta.classList.add('modal-meta');
   const authorsNames = document.createElement('p');
@@ -170,12 +183,14 @@ function showModal(selectedBook, description) {
 
   overlay.appendChild(modalContainer);
   document.body.appendChild(overlay);
+  modalContainer.focus();
 }
 
 //closeModal(): rimuove overlay e chiude il modale
 function closeModal() {
  const overlay = document.querySelector('.modal-overlay');
  if(overlay) overlay.remove();
+ if(lastFocusedElement) lastFocusedElement.focus();
 }
 
 //Funzioni per loader, errore e stato vuoto
@@ -183,6 +198,7 @@ function showLoader () {
 document.getElementById('results').innerHTML = '';
 const loader = document.createElement('div');
 loader.classList.add('loader');
+loader.setAttribute('role', 'status');
 const loaderText = document.createElement('span');
 loaderText.classList.add('loader-text');
 loaderText.textContent = 'Caricamento...';
@@ -199,6 +215,7 @@ function showError(message) {
   document.getElementById('results').innerHTML = '';
   const errorMessage = document.createElement('p');
   errorMessage.classList.add('error-message');
+  errorMessage.setAttribute('role', 'alert');
   errorMessage.textContent = message;
   document.getElementById('results').appendChild(errorMessage);
 }

@@ -218,6 +218,10 @@ header {
   flex: 1;
   border: none;
   outline: none;
+  &:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
   background-color: transparent;
   font-family: var(--text-font);
   font-size: 16px;

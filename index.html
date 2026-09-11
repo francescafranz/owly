@@ -27,13 +27,14 @@
             id="subject-input"
             type="search"
             placeholder="Es. thriller, fantasy, avventura..."
+            aria-label="Cerca per categoria"
             />
             <button class="button-primary" type="submit">Cerca</button>
           </form> 
         </div>
       </header>
 
-      <section id="results"></section>
+      <section id="results" aria-live="polite" role="status"></section>
       <footer>
         <div>
           <img class="logo" src="./src/assets/img/svg/white-logo-books.svg" alt="Owly books"> 
