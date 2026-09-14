@@ -19,7 +19,7 @@ results.addEventListener('click', (e) => {
 
 //form submit management
 async function handleSearch() {
-const inputValue = document.getElementById('subject-input').value.trim();
+const inputValue = document.getElementById('subject-input').value.trim().toLowerCase();
 if (!inputValue) {
   showError('Inserisci una categoria');
   return;
