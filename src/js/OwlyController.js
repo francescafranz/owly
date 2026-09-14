@@ -19,7 +19,7 @@ results.addEventListener('click', (e) => {
 
 //form submit management
 async function handleSearch() {
-const inputValue = document.getElementById('subject-input').value;
+const inputValue = document.getElementById('subject-input').value.trim();
 if (!inputValue) {
   showError('Inserisci una categoria');
   return;
@@ -69,6 +69,7 @@ async function handlePageClick(pageNumber) {
   const totalPages = Math.ceil(appState.worksCount / limit);
   renderBooks(appState.books);
   renderPagination(currentPage, totalPages);
+  document.querySelector('#results')?.firstElementChild?.scrollIntoView({behavior: 'smooth', block:'start'});
   } catch (error) {
     showError('Ops! Qualcosa è andato storto!');
   }

@@ -9,7 +9,7 @@ let lastFocusedElement = null;
 
 //Si chiama una volta per ricerca
 function renderHeader(category, workCount) {
-  const resultsHeader = document.createElement('results-header');
+  const resultsHeader = document.createElement('section');
   const resultsText = document.createElement('p');
   resultsText.classList.add('body-large');
   resultsText.textContent = `Risultati per ${category}:`;
@@ -37,9 +37,11 @@ function renderPagination(currentPage, totalPages) {
   const pageNumbers = generatePageNumber(currentPage, totalPages);
   const pagesNavigation = document.createElement('nav');
   pagesNavigation.classList.add('pagination');
+  pagesNavigation.setAttribute('aria-label', 'Paginazione risultati');
   const prevArrowButton = document.createElement('button');
   prevArrowButton.classList.add('page-arrow', 'page-btn');
   prevArrowButton.textContent = '‹';
+  prevArrowButton.setAttribute('aria-label', 'Pagina precedente');
   prevArrowButton.dataset.page = currentPage - 1;
   if (currentPage === 1) {
     prevArrowButton.disabled = true;
@@ -54,6 +56,7 @@ function renderPagination(currentPage, totalPages) {
     if(arrayElement === currentPage) {
       navButton.classList.add('active');
       navButton.disabled = true;
+      navButton.setAttribute('aria-current', 'page');
     }
     pagesNavigation.appendChild(navButton);
     } else if(arrayElement === '...') {
@@ -65,6 +68,7 @@ function renderPagination(currentPage, totalPages) {
   const nextArrowButton = document.createElement('button');
   nextArrowButton.classList.add('page-arrow', 'page-btn');
   nextArrowButton.textContent = '›';
+  nextArrowButton.setAttribute('aria-label', 'Pagina successiva');
   nextArrowButton.dataset.page = currentPage + 1;
   if (currentPage === totalPages) {
     nextArrowButton.disabled = true;
@@ -84,7 +88,7 @@ function createBookCard(work) {
   } else {
     bookCover.src = `${coverPlaceholderCard}`;
   }
-  bookCover.setAttribute('onerror', `this.src= '${coverPlaceholderCard}'`);
+  bookCover.addEventListener('error', () => {bookCover.src = coverPlaceholderCard;});
   bookCover.alt = work.title ? `Copertina di ${work.title}` : `Copertina non disponibile`;
 
   //Info Container
@@ -92,7 +96,8 @@ function createBookCard(work) {
   infoContainer.classList.add('card-info');
   const bookTitle = document.createElement('h2');
   bookTitle.textContent = work.title;
-  const authorsNames = document.createElement('h4');
+  const authorsNames = document.createElement('p');
+  authorsNames.classList.add('author-names')
   authorsNames.textContent = formatAuthors(work.authors);
   const detailsButton = document.createElement('button');
   detailsButton.textContent = 'Vedi dettagli';
@@ -135,7 +140,7 @@ function showModal(selectedBook, description) {
   } else {
     bookCover.src = `${coverPlaceholderModal}`;
   }
-  bookCover.setAttribute('onerror', `this.src= '${coverPlaceholderModal}'`);
+  bookCover.addEventListener('error', () => {bookCover.src = coverPlaceholderModal;});
   bookCover.alt = selectedBook.title ? `Copertina di ${selectedBook.title}` : `Copertina non disponibile`;
   const modalText = document.createElement('div');
   modalText.classList.add('modal-text');

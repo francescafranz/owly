@@ -98,12 +98,3 @@ class AppState {
   
 const appState = new AppState();
 export { appState };
-
-/*
-In altri file
-```
-import { appState } from './AppState';
-
-appState.books = [{ title: 'Book 1' }, { title: 'Book 2' }];
-```
-*/

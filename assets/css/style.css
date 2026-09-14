@@ -2,7 +2,7 @@
   --white: #FBF8F3;
   --black: #2A2A28;
   --neutral: #DCD4C3;
-  --neutral-dark: #8A8578;
+  --neutral-dark: #756D62;
   --error: #A8452E;
   --error-light: #F6DCD5;
   --primary: #4F7D5B;
@@ -99,8 +99,12 @@ button {
   transition: all 0.2s ease;
   border: 2px solid var(--primary);
 }
-button:hover, button:focus, button:active {
+button:hover, button:active {
   border-color: var(--secondary);
+}
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }
 button:disabled {
   border-color: var(--neutral-dark);
@@ -110,7 +114,7 @@ button:disabled {
   background-color: var(--primary);
   color: var(--white);
 }
-.button-primary:hover, .button-primary:focus, .button-primary:active {
+.button-primary:hover, .button-primary:active {
   background-color: var(--secondary);
 }
 .button-primary:disabled {
@@ -121,7 +125,7 @@ button:disabled {
   background-color: var(--white);
   color: var(--primary);
 }
-.button-secondary:hover, .button-secondary:focus, .button-secondary:active {
+.button-secondary:hover, .button-secondary:active {
   color: var(--secondary);
 }
 .button-secondary:disabled {
@@ -186,6 +190,12 @@ header {
   flex: 1;
   border: none;
   outline: none;
+}
+#subject-input:focus-visible {
+  outline: none;
+  border-bottom: 2px solid var(--primary);
+}
+#subject-input {
   background-color: transparent;
   font-family: var(--text-font);
   font-size: 16px;
@@ -240,8 +250,12 @@ header {
   gap: 16px;
 }
 
-.card-info h4 {
+.author-names {
   color: var(--neutral-dark);
+  font-family: var(--titles-font);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 26px;
 }
 
 .show-details {
@@ -344,7 +358,7 @@ header {
   justify-content: center;
   font-size: 14px;
 }
-.page-btn:hover, .page-btn:focus {
+.page-btn:hover {
   background-color: var(--neutral);
 }
 
@@ -377,6 +391,44 @@ footer {
   line-height: 18px;
   font-weight: 600;
   text-align: end;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 0;
+}
+.loader::before {
+  content: "";
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--neutral);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.loader .loader-text {
+  margin-top: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.error-message {
+  background-color: var(--error-light);
+  color: var(--error);
+  padding: 16px 24px;
+  border-radius: var(--default-radius);
+  text-align: center;
+}
+
+.empty-state {
+  color: var(--neutral-dark);
+  text-align: center;
+  padding: 64px 0;
 }
 
 @media (max-width: 768px) {

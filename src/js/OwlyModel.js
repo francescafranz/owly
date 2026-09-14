@@ -6,12 +6,7 @@ const limit = 10;
 async function searchByCategory (category, offset) {
   const urlOpenLibraryCategory = `https://openlibrary.org/subjects/${category}.json?limit=${limit}&offset=${offset}`;
   let bookList;
-  try { 
-    bookList = await axios.get(urlOpenLibraryCategory);
-  } catch (error) {
-    throw error;
-  }
-
+  bookList = await axios.get(urlOpenLibraryCategory);
   return {
     works: bookList.data.works, 
     workCount: bookList.data.work_count
@@ -22,12 +17,7 @@ async function searchByCategory (category, offset) {
 async function bookDetails (key) {
   const urlOpenLibraryBookKey = `https://openlibrary.org${key}.json`;
   let bookDetailsResponse;
-  try {
-    bookDetailsResponse = await axios.get(urlOpenLibraryBookKey);
-  } catch (error) {
-    throw error;
-  }
-
+  bookDetailsResponse = await axios.get(urlOpenLibraryBookKey);
   return {
     workTitle: bookDetailsResponse.data.title,
     workDescription: bookDetailsResponse.data.description,
