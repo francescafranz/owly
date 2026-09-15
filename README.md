@@ -2,7 +2,7 @@
 A book search app built with Vanilla JS, Vite and Open Library API.
 Developed as a JS study project for start2impact (https://www.start2impact.it).
 
-Owly is an accessible educational platform that supports both teachers and students - this project focuses on incentivizing reading by integrating the Open Library service via the Owly Book web app.
+Owly is an accessible educational platform that supports both teachers and students - this project focuses on incentivizing reading by integrating the Open Library service via the Owly Books web app.
 
 [Try Owly Books Live](https://owly-books-webapp.netlify.app)
 
@@ -86,7 +86,7 @@ owly/
 │   └── main.js
 ├── tests/
 │   ├── utils.test.js
-│   └── OwlyModel.test.js
+│   └── model.test.js
 ├── index.html
 ├── package.json
 └── vite.config.js
