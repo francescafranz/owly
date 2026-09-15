@@ -1,7 +1,6 @@
 // view: manages DOM rendering and UI components
 
-import coverPlaceholderModal from '../assets/img/png/cover-placeholder-M.png';
-import coverPlaceholderCard from '../assets/img/png/cover-placeholder-S.png';
+import coverPlaceholder from '../assets/img/png/cover-placeholder-L.png';
 import { extractDescription, formatAuthors, generatePageNumber } from './utils.js';
 
 let lastFocusedElement = null;
@@ -103,9 +102,9 @@ function createBookCard(work) {
   if (work.cover_id && work.cover_id !== null && work.cover_id !== undefined) {
     bookCover.src = `https://covers.openlibrary.org/b/id/${work.cover_id}-M.jpg`;
   } else {
-    bookCover.src = `${coverPlaceholderCard}`;
+    bookCover.src = `${coverPlaceholder}`;
   }
-  bookCover.addEventListener('error', () => {bookCover.src = coverPlaceholderCard;});
+  bookCover.addEventListener('error', () => {bookCover.src = coverPlaceholder;});
   bookCover.alt = work.title ? `Copertina di ${work.title}` : `Copertina non disponibile`;
 
   // info container
@@ -174,12 +173,12 @@ function showModal(selectedBook, description) {
     selectedBook.cover_id !== undefined) {
     bookCover.src = `https://covers.openlibrary.org/b/id/${selectedBook.cover_id}-M.jpg`;
   } else {
-    bookCover.src = `${coverPlaceholderModal}`;
+    bookCover.src = `${coverPlaceholder}`;
   }
 
   // visual fallback handling
   bookCover.addEventListener('error', () => {
-    bookCover.src = coverPlaceholderModal;
+    bookCover.src = coverPlaceholder;
   });
 
   bookCover.alt = selectedBook.title ? 
