@@ -78,10 +78,10 @@ owly/
 │   │       ├── _variables.scss
 │   │       └── style.scss
 │   ├── js/
-│   │   ├── AppState.js
-│   │   ├── OwlyModel.js
-│   │   ├── OwlyView.js
-│   │   ├── OwlyController.js
+│   │   ├── app-state.js
+│   │   ├── model.js
+│   │   ├── view.js
+│   │   ├── controller.js
 │   │   └── utils.js
 │   └── main.js
 ├── tests/
@@ -99,10 +99,10 @@ The project follows the MVC (Model-View-Controller) pattern, combined with a Sin
 
 API calls(Model), DOM manipulation (View), and user interaction (Controller) are isolated in different files. This makes the codebase easier to test, maintain and debug:
 
-- **Model** (OwlyModel.js) - Handles all API communication with OpenLibrary. No DOM logic.
-- **View** (OwlyView.js) - Renders the UI without calling the API directly.
-- **Controller** (OwlyController.js) - Coordinates Model and View: listens user events, calls the API via Model and updates the View.
-- **AppState** (AppState.js) - The singleton pattern ensures a single source of truth for shared state. Uses private fields with validation via getters/setters.
+- **Model** (model.js) - Handles all API communication with OpenLibrary. No DOM logic.
+- **View** (view.js) - Renders the UI without calling the API directly.
+- **Controller** (controller.js) - Coordinates Model and View: listens user events, calls the API via Model and updates the View.
+- **AppState** (app-state.js) - The singleton pattern ensures a single source of truth for shared state. Uses private fields with validation via getters/setters.
 
 
 ## Data Flow
@@ -135,7 +135,7 @@ https://covers.openlibrary.org/b/id/{cover_id}-M.jpg
 Unit tests are written with **Vitest**.
 
 - utils.test.js - Tests for formatAuthors, extractDescription, generatePageNumber
-- OwlyModel.test.js - Tests for searchByCategory and bookDetails with mocked Axios
+- model.test.js - Tests for searchByCategory and bookDetails with mocked Axios
 
 All tests passing.
 

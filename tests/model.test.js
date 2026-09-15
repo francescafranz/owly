@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 vi.mock('axios');
 import axios from 'axios';
-import { searchByCategory, bookDetails } from '../src/js/OwlyModel.js'
+import { searchByCategory, bookDetails } from '../src/js/model.js'
 
 
 describe('searchByCategory', () => { it('restituisce un oggetto che contiene i titoli dei libri ed il numero di libri trovati', async () => {
