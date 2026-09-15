@@ -1,8 +1,8 @@
 // controller: handles user events and coordinates model and view
 
-import { appState } from './AppState.js';
-import {searchByCategory, bookDetails, limit} from './OwlyModel.js';
-import {renderHeader, renderBooks, renderPagination, showModal, showLoader, hideLoader, showError, showEmptyState} from './OwlyView.js';
+import { appState } from './app-state.js';
+import {searchByCategory, bookDetails, limit} from './model.js';
+import {renderHeader, renderBooks, renderPagination, showModal, showLoader, hideLoader, showError, showEmptyState} from './view.js';
 
 // listener initialization
 function init() {
