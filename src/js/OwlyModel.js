@@ -1,8 +1,11 @@
+// model: handles API calls to Open Library
+
 import axios from 'axios';
-//books per page
+
+// books per page
 const limit = 10;
 
-//API for searching books by category
+// API for searching books by category
 async function searchByCategory (category, offset) {
   const urlOpenLibraryCategory = `https://openlibrary.org/subjects/${category}.json?limit=${limit}&offset=${offset}`;
   const bookList = await axios.get(urlOpenLibraryCategory);
@@ -12,7 +15,7 @@ async function searchByCategory (category, offset) {
   };
 }
 
-//API for book details
+// API for book details
 async function bookDetails (key) {
   const urlOpenLibraryBookKey = `https://openlibrary.org${key}.json`;
   const bookDetailsResponse = await axios.get(urlOpenLibraryBookKey);

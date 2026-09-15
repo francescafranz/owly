@@ -1,4 +1,4 @@
-//funzioni di utilità — funzioni pure, facili da testare
+// utils - pure utility functions for data formatting and transformation
 
 
 export function formatAuthors(authors) { 
@@ -27,13 +27,13 @@ export function extractDescription(description) {
 }
 
 export function generatePageNumber(currentPage, totalPages) {
-  let pageNumbers = [];
+  const pageNumbers = [];
   if (totalPages <= 7) {
     for (let i = 1; i<= totalPages; i++){
       pageNumbers.push(i);
     }
     return pageNumbers;
-  } else if (totalPages > 7) {
+  } else {
     pageNumbers.push(1);
     if (currentPage > 3) {
       pageNumbers.push('...');

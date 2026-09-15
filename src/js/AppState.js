@@ -1,3 +1,5 @@
+// app-state - singleton: manages global application state
+
 class AppState {
   #books = [];
   #currentCategory = '';
@@ -8,7 +10,8 @@ class AppState {
 
   constructor() {}
 
-  //#books
+
+  // #books
   get books() {
     return JSON.parse(JSON.stringify(this.#books));
   }
@@ -21,7 +24,8 @@ class AppState {
     }
   }
   
-  //#currentCategory
+
+  // #currentCategory
   get currentCategory() {
     return this.#currentCategory;
   }
@@ -31,10 +35,11 @@ class AppState {
       throw new Error('currentCategory must be a string');
     } else {
       this.#currentCategory = currentCategory;
-      }
+    }
   }
 
-  //#loadedNumber
+
+  // #loadedNumber
   get loadedNumber() {
     return this.#loadedNumber;
   }
@@ -44,10 +49,11 @@ class AppState {
       throw new Error('loadedNumber must be a number');
     } else {
       this.#loadedNumber = loadedNumber;
-      }
+    }
   }
 
-  //#worksCount
+
+  // #worksCount
   get worksCount() {
     return this.#worksCount;
   }
@@ -57,11 +63,11 @@ class AppState {
       throw new Error('worksCount must be a number');
     } else {
       this.#worksCount = worksCount;
-      }
+    }
   }
 
 
-  //#selectedBook
+  // #selectedBook
   get selectedBook() {
     if (this.#selectedBook === null) {
       return null;
@@ -81,17 +87,17 @@ class AppState {
   }
 
 
-  //#isLoading
+  // #isLoading
   get isLoading() {
     return this.#isLoading;
   }
 
   set isLoading(isLoading) {
-  if (typeof isLoading !== 'boolean') {
+    if (typeof isLoading !== 'boolean') {
       throw new Error('isLoading must be a boolean')
     } else {
       this.#isLoading = isLoading;
-      }
+    }
   }
 
 } 
