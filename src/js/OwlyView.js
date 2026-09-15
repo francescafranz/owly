@@ -177,8 +177,8 @@ function showModal(selectedBook, description) {
   modalFooter.classList.add('modal-footer');
   const openLibraryButton = document.createElement('button');
   openLibraryButton.textContent = 'Apri in Open Library';
-  openLibraryButton.addEventListener('click', () => window.open(`https://openlibrary.org${selectedBook.key}`, '_blank'));
-  openLibraryButton.classList.add('button-primary');
+  openLibraryButton.classList.add('button-primary', 'openlibrary-button');
+  openLibraryButton.dataset.key = selectedBook.key;
   const closeButton = document.createElement('button');
   closeButton.textContent = 'Chiudi';
   closeButton.addEventListener('click', closeModal);
