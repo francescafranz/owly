@@ -1,4 +1,3 @@
-// salvare titolo, autori, cover_id e key in appState.selectedBook quando utente clicca su una determinata card
 import { appState } from './AppState.js';
 import {searchByCategory, bookDetails, limit} from './OwlyModel.js';
 import {renderHeader, renderBooks, renderPagination, showModal, showLoader, hideLoader, showError, showEmptyState} from './OwlyView.js';
@@ -15,6 +14,21 @@ results.addEventListener('click', (e) => {
     handlePageClick(e.target.dataset.page);
   }
 })
+
+document.body.addEventListener('click',(e) => {
+  if(e.target.classList.contains('openlibrary-button')){
+    window.open(`https://openlibrary.org${e.target.dataset.key}`, '_blank');
+  }
+})
+
+}
+
+//render results
+function renderResults(){
+const currentPage = appState.loadedNumber / limit + 1;
+const totalPages = Math.ceil(appState.worksCount / limit); 
+renderBooks(appState.books); 
+renderPagination(currentPage, totalPages);
 }
 
 //form submit management
@@ -35,10 +49,7 @@ if (!result.works || result.works.length === 0){
   showEmptyState();
 } else {
   renderHeader(appState.currentCategory, appState.worksCount);
-  renderBooks(appState.books);
-  const currentPage = appState.loadedNumber / limit + 1;
-  const totalPages = Math.ceil(appState.worksCount / limit);
-  renderPagination(currentPage, totalPages);
+  renderResults();
 } } catch (error) {
   showError('Ops! Qualcosa è andato storto!');
 } finally {
@@ -62,13 +73,10 @@ async function handlePageClick(pageNumber) {
   const newOffset = (parseInt(pageNumber) - 1) * limit;
   appState.loadedNumber = newOffset;
   try {
-  const results = await searchByCategory(appState.currentCategory, appState.loadedNumber);
-  appState.books = results.works;
-  appState.worksCount = results.workCount;
-  const currentPage = appState.loadedNumber / limit + 1;
-  const totalPages = Math.ceil(appState.worksCount / limit);
-  renderBooks(appState.books);
-  renderPagination(currentPage, totalPages);
+  const pageResults = await searchByCategory(appState.currentCategory, appState.loadedNumber);
+  appState.books = pageResults.works;
+  appState.worksCount = pageResults.workCount;
+  renderResults();
   document.querySelector('#results')?.firstElementChild?.scrollIntoView({behavior: 'smooth', block:'start'});
   } catch (error) {
     showError('Ops! Qualcosa è andato storto!');
